@@ -5,10 +5,12 @@
 <title>안녕하세요!</title>
 <script type="text/javascript" src="httpRequest.js"></script>
 <script type="text/javascript">
+
 	function helloToServer() {
 		var params = "name=" + encodeURIComponent(document.f.name.value);
 		sendRequest("hello.jsp", params, helloFromServer, "POST");
 	}
+	
 	function helloFromServer() {
 		if(httpRequest.readyState == 4) {
 			if(httpRequest.status == 200) {
