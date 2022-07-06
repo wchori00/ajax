@@ -9,28 +9,32 @@ var checkFirst = false;
 var lastKeyword = '';
 var loopSendKeyword = false;
 function startSuggest() {
-	if(checkFirst == false) {
-		setTimeout("sendKeyword();", 500);
-		loopSendKeyword = true;
+	if(checkFirst == false) {						// checkFirst 펄스면
+		setTimeout("sendKeyword();", 500);			// 0.5초 후에 sendKeyword()메서드를 실행
+		loopSendKeyword = true;						// loopSendKeyword는 트루로
 	}
-	checkFirst = true;
+	checkFirst = true;								// checkFirst 트루
 }
 function sendKeyword() {
-	if(loopSendKeyword == false) return;
-	var keyword = document.search.keyword.value;
-	if(keyword == '') {
-		lastKeyword = '';
-		hide('suggest');
-	}else if(keyword != lastKeyword) {
-		lastKeyword = keyword;
-		if(keyword != '') {
-			var params = "keyword=" + encodeURIComponent(keyword);
+	if(loopSendKeyword == false) return;			// loopSendKeyword 펄스면 리턴 
+	var keyword = document.search.keyword.value;	// keyword입력값 keyword에 저장
+	if(keyword == '') {								// keyword 공백이면 
+		lastKeyword = '';							// lastKeyword 공백 
+		hide('suggest');							// suggest 숨기기
+	}else if(keyword != lastKeyword) {				// keyword입력값과 lastKeyword(통째로)가 같지 않으면
+		lastKeyword = keyword;						// keyword입력값을 lastKeyword에 저장 
+		if(keyword != '') {							// keyword입력값이 공백이 아니면
+			var params = "keyword=" + encodeURIComponent(keyword);		// "keyword=keyword인코딩값"을 params에 저장
+			// encodeURIComponent()함수는 
+			// 영 대문자와 소문자, 숫자, 그리고 *-_.을 제외한 모든 문자를 
+			// 유니코드 형식으로 변환한다.
+			// 1BYTE 문자는 %XX, 2BYTE 문자는 %uXXXX 형태로...
 			sendRequest("suggest.jsp", params, displayResult, 'POST');
-		}else {
-			hide('suggest');
+		}else {										// keyword입력값이 공백이면
+			hide('suggest');						// suggest 숨기기
 		}
 	}
-	setTimeout("sendKeyword();", 500);
+	setTimeout("sendKeyword();", 500);				// 0.5초 후에 sendKeyword()메서드를 실행
 }
 
 function displayResult() {
@@ -90,7 +94,7 @@ function hide(elementId) {
 	<form name="search">
 	<input type="text name="keyword" id="keyword" onkeydown="startSuggest()">
 	<input type="button" value="검색">
-	<div id="suggest" style="display: postion: absolute; left: 0px; top: 30px;">
+	<div id="suggest" style="display:''; postion: absolute; left: 0px; top: 30px;">
 	<div id="suggestList"></div>
 	</form>
 </body>
