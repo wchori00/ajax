@@ -6,25 +6,29 @@
 <script type="text/javascript" src="log.js"></script>
 <script type="text/javascript">
 window.onload = function() {
-	var roodNode = document.documentElement;
-	log("root 태그: " + roodNode.tagName);
+// window라는 객체가 웹 문서를 불러올 때, 문서가 사용되는 시점에 실행되는 onload라는 함수를 오버라이딩
+	var roodNode = document.documentElement;	// DOM트리 꼭대기에 있는 문서 노드를 roodNode에 저장
+	log("root 태그: " + roodNode.tagName);		// roodNode의 태그 이름
 	var bodyNode = document.getElementsByTagName("body").item(0);
-	log("body 태그: " + bodyNode.tagName);
+	// body태그에 해당하는 모든 Element 목록 중 0번째 태그 bodyNode에 저장
+	log("body 태그: " + bodyNode.tagName);		// bodyNode의 태그 이름
 	var spanList = document.getElementsByTagName("span");
-	log("span 태그의 개수: " + spanList.length);
-	for(var i = 0; i < spanList.length; i++) {
-		var span = spanList.item(i);
-		log((i + 1) + "번째 span의 id: " + span.getAttribute("id"));
+	// span태그에 해당하는 모든 Element 목록 spanList에 저장
+	log("span 태그의 개수: " + spanList.length);	// spanList의 길이(갯수)
+	for(var i = 0; i < spanList.length; i++) {		// spanList의 길이만큼 반복문
+		var span = spanList.item(i);				// spanList의 값 span에 저장
+		log((i + 1) + "번째 span의 id: " + span.getAttribute("id"));	// 스판의 id값
 	}
 	var debugConsoleDiv = document.getElementById("debugConsole");
-	log("debugConsole 요소: " + debugConsoleDiv.tagName);
-	var bodyLastChild = bodyNode.lastChild;
-	log("body의 마지막 자식 노드: " + bodyLastChild.nodeName);
+	// id값이 debugConsole에 해당하는 모든 Element 목록 debugConsoleDiv에 저장
+	log("debugConsole 요소: " + debugConsoleDiv.tagName);	// debugConsoleDiv의 태그 이름
+	var bodyLastChild = bodyNode.lastChild;					// bodyNode의 마지막 노드를 bodyLastChild에 저장
+	log("body의 마지막 자식 노드: " + bodyLastChild.nodeName);	// bodyLastChild의 노드값
 }
 </script>
 </head>
 <body>
-<span id="a">a</span>
+<span id="a">a</span>	<!-- span 줄바꿈X, div 줄바꿈O -->
 <p>
 test<span id="b">b</span>
 </p>
