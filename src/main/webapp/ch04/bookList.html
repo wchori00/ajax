@@ -14,7 +14,7 @@
 	function loadedBooksXML(req) {
 		if (req.readyState == 4) {
 			if (req.status == 200) {
-				xmlDoc = req.responseXML;
+				xmlDoc = req.responseXML; // req = this.getXMLHttpRequest();
 				doXSLT(); // XML 문서 로딩 후 doXSLT() 실행
 			}
 		}
@@ -29,18 +29,18 @@
 	}
 	function doXSLT(req) {
 		if (xmlDoc == null || xslDoc == null) // 두 문서를 모두 로딩한
-			return; // 경우에만 실행
-		var bookList = document.getElementById("bookList");
-		if (window.ActiveXObject) {
+			return; // 경우에만 실행 : 하나라도 비어있으면 실행X
+		var bookList = document.getElementById("bookList"); // id찾아서 저장
+		if (window.ActiveXObject) {	// 웹브라우저
 			bookList.innerHTML = xmlDoc.transformNode(xslDoc);
 		} else {
 			var xsltProc = new XSLTProcessor();
-			xsltProc.importStylesheet(xslDoc);
+			xsltProc.importStylesheet(xslDoc); // xml데이터 -> xsl형식으로
 			var fragment = xsltProc.transformToFragment(xmlDoc, document);
-			bookList.appendChild(fragment);
+			bookList.appendChild(fragment); // innerHTML = , appendChild +=
 		}
 	}
-	window.onload = function() {
+	window.onload = function() { // 윈도우(=웹브라우저).로딩다되면실행
 		loadBooks();
 	}
 </script>
