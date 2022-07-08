@@ -33,18 +33,19 @@ ajax.xhr.Request.prototype = {
 	send: function() {
 		this.req = this.getXMLHttpRequest();
 		// req 프로퍼티에 XMLHttpREquest 객체를 저장
-		var httpMethod = this.method ? this.method : 'GET'; // 값 없으면 get
-		if(httpMethod != 'GET' && httpMethod != 'POST') {
-			httpMethod = 'GET'; // 위에서 받은값 get으로
+		var httpMethod = this.method ? this.method : 'GET'; // 값이 있으면 트루(this.method) 값 없으면 펄스(get)
+		if(httpMethod != 'GET' && httpMethod != 'POST') { // 값이 GET, POST 둘 다 아니면
+			httpMethod = 'GET'; // 위에서 받은값 GET으로
 		}
-		var httpParams = (this.params == null || this.params == '') ? null : this.params; // 빈공간은 오류
+		var httpParams = (this.params == null || this.params == '') ? null : this.params; // 빈공간은 오류(null은 빈공간 아님)
+		// this.params가 null 이거나 빈공간이면 null, 값 있으면 thid.params
 		var httpUrl = this.url;
-		if(httpMethod == 'GET' && httpParams != null) { // 겟이고 파람 null아니면
-			httpUrl = httpUrl + "?" + httpParams; // 주소만들기
+		if(httpMethod == 'GET' && httpParams != null) { // httpMethod값이 GET이고 httpParams가 null아니면
+			httpUrl = httpUrl + "?" + httpParams; // 함수 추가해서 주소만들기
 		}
-		this.req.open(httpMethod, httpUrl, true);
+		this.req.open(httpMethod, httpUrl, true); // this.getXMLHttpRequest.open()
 		this.req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // HTML에서 js로 넘겨주기위해 
-		var request = this; // XMLHttpRequest 객체의 readyState 값이 // this: 예)다른객체에서 접근해서 url가져갈수있도록
+		var request = this; // XMLHttpRequest 객체의 readyState 값이 // this: 다른객체에서 접근해서 데이터(ex.URL)가져갈수있도록
 		this.req.onreadystatechange = function() { // 바뀔 때 이 객체의 (등록만)
 			request.onStateChange.call(request); // <- 함수 호출
 		}

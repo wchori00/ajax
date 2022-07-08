@@ -12,3 +12,5 @@
 	</data>
 </result>
 
+<!-- CDATA: CharacterDATA(문자 데이터)를 의미하며 
+CDATA 사이에 포함된 모든 문자는 문자 그대로 해석된다 -->
