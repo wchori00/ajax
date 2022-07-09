@@ -1,6 +1,6 @@
 var ajax = {};
 ajax.xhr = {};	// ajax.xhr 패키지 지정
-ajax.xhr.Request = function(url, params, callback, method) { // ajax.xhr.Request클래스 안에 function()메소드 정의
+ajax.xhr.Request = function(url, params, callback, method) { // ajax.xhr.Request클래스 안에 function()생성자 정의
 	this.url = url;
 	this.params = params;
 	this.callback = callback;
