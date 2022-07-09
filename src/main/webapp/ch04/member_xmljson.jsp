@@ -5,7 +5,7 @@
 	<data><![CDATA[
 	{
 		name: '홍길동',
-		id: 'SantaMonica',
+		id: 'Seoul',
 		sno: '7000001000000'
 	}
 	]]>

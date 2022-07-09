@@ -1,6 +1,6 @@
 var ajax = {};
 ajax.xhr = {};	// ajax.xhr 패키지 지정
-ajax.xhr.Request = function(url, params, callback, method) {
+ajax.xhr.Request = function(url, params, callback, method) { // ajax.xhr.Request클래스 안에 function()메소드 정의
 	this.url = url;
 	this.params = params;
 	this.callback = callback;
@@ -43,9 +43,10 @@ ajax.xhr.Request.prototype = {
 		if(httpMethod == 'GET' && httpParams != null) { // httpMethod값이 GET이고 httpParams가 null아니면
 			httpUrl = httpUrl + "?" + httpParams; // 함수 추가해서 주소만들기
 		}
-		this.req.open(httpMethod, httpUrl, true); // this.getXMLHttpRequest.open()
+		this.req.open(httpMethod, httpUrl, true); // this.getXMLHttpRequest.open() 동기/비동기
 		this.req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded'); // HTML에서 js로 넘겨주기위해 
 		var request = this; // XMLHttpRequest 객체의 readyState 값이 // this: 다른객체에서 접근해서 데이터(ex.URL)가져갈수있도록
+		// this=ajax.xhr.Request
 		this.req.onreadystatechange = function() { // 바뀔 때 이 객체의 (등록만)
 			request.onStateChange.call(request); // <- 함수 호출
 		}
