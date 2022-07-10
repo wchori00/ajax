@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>$("parent > child")선택자 실습</title>
+<script type="text/javascript" src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("ul.topnav > li").css("border", "3px double red");
+	console.log($("ul.topnav > li").length);
+});
+</script>
+</head>
+<body>
+<ul class="topnav">
+<li>아이템 1</li>
+<li>아이템 2
+<ul>
+<li>중첩된 아이템1</li>
+<li>중첩된 아이템2</li>
+<li>중첩된 아이템3</li>
+</ul>
+</li>
+<li>아이템3</li>
+</ul>
+</body>
+</html>
