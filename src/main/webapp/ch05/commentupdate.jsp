@@ -3,17 +3,17 @@
 <%@ page import= "java.sql.Connection" %>
 <%@ page import= "java.sql.PreparedStatement" %>
 <%@ page import= "java.sql.SQLException" %>
-<%@ page import= "util.Util" %>
-<%@ page import= "util.DB" %>
+<%@ page import= "util.Util2" %>
+<%@ page import= "util.DB2" %>
 <%
-	request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("utf-8");
 	int id = Integer.parseInt(request.getParameter("id"));
 	String name = request.getParameter("name");
 	String content = request.getParameter("content");
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	try {
-		conn = DB.getConnection();
+		conn = DB2.getConnection();
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement("update tablement set name=?, content=? where id=?");
 		pstmt.setString(1, name);

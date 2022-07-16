@@ -4,14 +4,14 @@
 <%@ page import= "java.sql.Statement" %>
 <%@ page import= "java.sql.ResultSet" %>
 <%@ page import= "java.sql.SQLException" %>
-<%@ page import= "util.Util" %>
-<%@ page import= "util.DB" %>
+<%@ page import= "util.Util2" %>
+<%@ page import= "util.DB2" %>
 <%
-	Connection conn = null;
+Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
 	try {
-		conn = DB.getConnection();
+		conn = DB2.getConnection();
 		stmt = conn.createStatement();
 		rs = stmt.executeQuery("select * from tablement order by ID");
 %>

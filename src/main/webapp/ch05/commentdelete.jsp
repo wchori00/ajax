@@ -5,15 +5,15 @@
 <%@ page import= "java.sql.PreparedStatement" %>
 <%@ page import= "java.sql.ResultSet" %>
 <%@ page import= "java.sql.SQLException" %>
-<%@ page import= "util.Util" %>
-<%@ page import= "util.DB" %>
+<%@ page import= "util.Util2" %>
+<%@ page import= "util.DB2" %>
 <%
-	request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("utf-8");
 	int id = Integer.parseInt(request.getParameter("id"));
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	try {
-		conn = DB.getConnection();
+		conn = DB2.getConnection();
 		conn.setAutoCommit(false);
 		pstmt = conn.prepareStatement("delete from tablement where id = ?");
 		pstmt.setInt(1, id);

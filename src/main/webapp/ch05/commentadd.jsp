@@ -5,10 +5,10 @@
 <%@ page import= "java.sql.PreparedStatement" %>
 <%@ page import= "java.sql.ResultSet" %>
 <%@ page import= "java.sql.SQLException" %>
-<%@ page import= "util.Util" %>
-<%@ page import= "util.DB" %>
+<%@ page import= "util.Util2" %>
+<%@ page import= "util.DB2" %>
 <%
-	request.setCharacterEncoding("utf-8");
+request.setCharacterEncoding("utf-8");
 	String name = request.getParameter("name");
 	String content = request.getParameter("content");
 	Connection conn = null;
@@ -18,12 +18,12 @@
 	PreparedStatement pstmtCommentInsert = null;
 	try {
 		int nextId = 0;
-		conn = DB.getConnection();
+		conn = DB2.getConnection();
 		conn.setAutoCommit(false);
 		stmtIdSelect = conn.createStatement();
 		rsIdSelect = stmtIdSelect.executeQuery("select max(id) from tablement");
 		if(rsIdSelect.next()) {
-			nextId = rsIdSelect.getInt(1);
+	nextId = rsIdSelect.getInt(1);
 		}
 		nextId++;
 		pstmtCommentInsert = conn.prepareStatement("insert into tablement values(?,?,?)");
