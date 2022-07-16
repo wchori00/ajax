@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script
+	src="../js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(function(){
+	$("button").click(function(){
+		
+			$.ajax({
+				type:"get",
+				url:"chatdata.jsp",
+				data:{
+					chat_id:$("#content2").val(),
+					name:$("#content1").val(),
+					message:$("#content").val()
+				},
+				dataType:"json",
+				success:function(responseData,status,xhr){
+					
+				let a="";
+					responseData.chat.map((vo)=>{
+						a+=`<div>id:${vo.name}</div><div>chat:${vo.message}</div>`;
+					})
+					$("#result").html(a); 
+				},
+				error:function(xhr,status,error){
+					console.log(error);
+				}
+			});
+		
+			$('html').animate({scrollTop : $(document).height()}, 100);
+			
+		
+	});
+	function call(){
+		$.ajax({
+			type:"get",
+			url:"chatdatacall.jsp",
+			dataType:"json",
+			success:function(responseData,status,xhr){
+			
+			let a="";
+				responseData.chat.map((vo)=>{
+					a+=`<div>id:${vo.name}</div><div>chat:${vo.message}</div>`;
+				})
+				$("#result").html(a); 
+			},
+			error:function(xhr,status,error){
+				console.log(error);
+			}
+		});
+		
+		
+	}
+	call();
+	setInterval(function() {
+		   call();
+		}, 2000);
+	
+});
+</script>
+</head>
+<body>
+<div id="result">
+
+
+</div>
+<input type="hidden"  id="content1" value="abc"/>
+<input type="hidden"  id="content2" value="0" />
+<input type="text" id="content"/>
+<button>finish</button>
+</body>
+</html>
