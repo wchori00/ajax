@@ -17,7 +17,7 @@ List<chatVO> list=dao.select();
 %>
 {
 "chat_id":"<%=da.getChat_id()%>",
-"name":"<%=da.getName()%>,
+"name":"<%=da.getName()%>",
 "message":"<%=da.getMessage()%>"
 }<%
 if(list.size()-1>count) {

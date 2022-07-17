@@ -23,10 +23,10 @@ public class chatDAO {
 		ResultSet rs = null;
 		try {
 			conn=Util.getConnection();
-			pstmt=conn.prepareStatement("insert into chat_list values(?,?,?)");
-			pstmt.setInt(1, chat_id);
-			pstmt.setString(2, name);
-			pstmt.setString(3, message);
+			pstmt=conn.prepareStatement("insert into chat_list values(chat_seq.nextval,?,?)");
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, message);
 			pstmt.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -55,7 +55,7 @@ public class chatDAO {
 		List<chatVO> list=new ArrayList<chatVO>();
 		try {
 			conn=Util.getConnection();
-			pstmt=conn.prepareStatement("select * from chat_list");
+			pstmt=conn.prepareStatement("select * from chat_list order by chat_id asc");
 			rs=pstmt.executeQuery();
 			while(rs.next()) {
 				chatVO chat=new chatVO(rs.getInt("chat_id"), rs.getString("name"),rs.getString("message"));
