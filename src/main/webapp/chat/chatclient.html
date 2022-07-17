@@ -55,7 +55,7 @@ $(document).ready(function(){
 					
 				let a="";
 					responseData.chat.map((vo)=>{
-						a+=`<div>${vo.name}>${vo.message}</div>`;
+						a+=`<div>[${vo.name}] ${vo.message}</div>`;
 					})
 					$("#result").html(a); 
 				},
@@ -63,8 +63,8 @@ $(document).ready(function(){
 					console.log(error);
 				}
 			});
-		
-			$('html').animate({scrollTop : $(document).height()}, 100);
+			//$("#result").scrollTop($("#result")[0].scrollHeight);
+			$('#result').animate({scrollTop : $(document).height()}, 100);
 			$("#content").val('');
 		};
 	})
@@ -78,7 +78,7 @@ $(document).ready(function(){
 			
 			let a="";
 				responseData.chat.map((vo)=>{
-					a+=`<div>${vo.name}>${vo.message}</div>`;
+					a+=`<div>[${vo.name}] ${vo.message}</div>`;
 				})
 				$("#result").html(a); 
 			},
@@ -98,13 +98,16 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-<div id="result">
+<div id="result" style="overflow:auto; width:220px; height:500px;">
 
 
 </div>
+
+<div>
 <input type="hidden"  id="content1" value="abc"/>
 <input type="hidden"  id="content2" value="0" />
 <input type="text"  id="content"/>
-<button>finish</button>
+<button>  입력  </button>
+</div>
 </body>
 </html>
